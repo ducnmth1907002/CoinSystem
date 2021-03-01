@@ -13,11 +13,17 @@ namespace Coin.Models
         public string Content { get; set; }
         public int UserId { get; set; }
         public NewsStatus Status { get; set; }
+        public NewsType Type { get; set; }
         public virtual User User { get; set; }
     }
 
     public enum NewsStatus
     {
         Active, Deactive
+    }
+
+    public enum NewsType
+    {
+        Bronze, Silver, Gold
     }
 }
