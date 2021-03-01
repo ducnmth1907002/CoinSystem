@@ -15,6 +15,7 @@ namespace Coin.Models
         public UserRole Role { get; set; }
         public UserStatus Status { get; set; }
         public ICollection<Subscribe> Subscribes { get; set; }
+        public ICollection<News> News { get; set; }
     }
 
     public enum UserRole
