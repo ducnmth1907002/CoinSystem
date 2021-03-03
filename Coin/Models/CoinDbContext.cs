@@ -16,5 +16,6 @@ namespace Coin.Models
         public DbSet<News> News { get; set; }
         public DbSet<Subscribe> Subscribes { get; set; }
         public DbSet<Currency> Currencies { get; set; }
+
     }
 }
