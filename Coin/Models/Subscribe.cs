@@ -13,6 +13,9 @@ namespace Coin.Models
         public DateTime EndDate { get; set; }
         public SubscribeType Type { get; set; }
         public virtual User User { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+
     }
 
     public enum SubscribeType

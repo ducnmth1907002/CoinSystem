@@ -15,6 +15,9 @@ namespace Coin.Models
         public NewsStatus Status { get; set; }
         public NewsType Type { get; set; }
         public virtual User User { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+
     }
 
     public enum NewsStatus
