@@ -28,8 +28,10 @@ namespace Coin.Models
                 Phone = userModel.Phone,
                 Name = userModel.Name,
                 Email = userModel.Email,
-                Role = UserRole.Admin,
-                Status = UserStatus.Deactive
+                Role = UserRole.User,
+                Status = UserStatus.Active,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
             };
 
             var result = await _userManager.CreateAsync(user, userModel.PasswordHash);
