@@ -92,16 +92,8 @@ namespace Coin.Controllers
         {            
             var userName = User.Identity.GetUserName();
             var user = userManager.FindByName(userName);
-            
-            return new Models.User
-            {
-                Id = user.Id,
-                UserName = user.UserName,
-                Phone = user.Phone,
-                Email = user.Email,
-                Status = user.Status,
-                Subscribes = user.Subscribes,
-            };           
+
+            return user;
         }
     }
 }
