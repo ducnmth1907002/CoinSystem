@@ -46,4 +46,9 @@ namespace Coin.Models
         Active, Deactive
     }
 
+    public class UserInfoViewModel
+    {
+        public string Email { get; set; }
+    }
+
 }

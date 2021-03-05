@@ -1,5 +1,6 @@
 ﻿using Coin.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,13 @@ namespace Coin.Controllers
     public class UserController : ApiController
     {
         private AuthRepository _repo = null;
-
+        protected CoinDbContext coinDbContext { get; set; }
+        protected UserManager<User> userManager { get; set; }
         public UserController()
         {
             _repo = new AuthRepository();
+            this.coinDbContext = new CoinDbContext();
+            this.userManager = new UserManager<User>(new UserStore<User>(this.coinDbContext));
         }
 
         // POST api/Account/Register
@@ -79,6 +83,25 @@ namespace Coin.Controllers
             }
 
             return null;
+        }
+
+        [Authorize]
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        [Route("UserInfo")]
+        public User GetUserInfo()
+        {            
+            var userName = User.Identity.GetUserName();
+            var user = userManager.FindByName(userName);
+            
+            return new Models.User
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Phone = user.Phone,
+                Email = user.Email,
+                Status = user.Status,
+                Subscribes = user.Subscribes,
+            };           
         }
     }
 }
