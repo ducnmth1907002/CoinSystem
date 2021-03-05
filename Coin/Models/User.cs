@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -9,23 +10,8 @@ namespace Coin.Models
 {
     public class User : IdentityUser
     {
-        //[Key]
-        //public int UserId { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
-        //[Required]
-        //[DataType(DataType.EmailAddress)]
-        //public string Email { get; set; }
-        //[Required]
-        //[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        //[DataType(DataType.Password)]
-        //[Display(Name = "Password")]
-        //public string Password { get; set; }
-
-        //[DataType(DataType.Password)]
-        //[Display(Name = "Confirm password")]
-        //[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        //public string ConfirmPassword { get; set; }
         public UserRole Role { get; set; }
         public UserStatus Status { get; set; }
         public ICollection<Subscribe> Subscribes { get; set; }
@@ -46,9 +32,15 @@ namespace Coin.Models
         Active, Deactive
     }
 
-    public class UserInfoViewModel
+    public class UserInfo
     {
+        public string UserName { get; set; }
         public string Email { get; set; }
+        public string Phone { get; set; }
+        public UserStatus Status { get; set; }
+        public SubscribeType SubscribeType { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 
 }

@@ -13,7 +13,7 @@ namespace Coin.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202103051204420_Coin"; }
+            get { return "202103051325077_Coin"; }
         }
         
         string IMigrationMetadata.Source
