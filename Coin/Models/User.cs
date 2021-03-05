@@ -38,7 +38,7 @@ namespace Coin.Models
         public string Email { get; set; }
         public string Phone { get; set; }
         public UserStatus Status { get; set; }
-        public SubscribeType SubscribeType { get; set; }
+        public SubscribeType? SubscribeType { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }

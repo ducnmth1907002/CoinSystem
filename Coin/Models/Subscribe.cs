@@ -12,7 +12,7 @@ namespace Coin.Models
         public string UserId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public SubscribeType Type { get; set; }
+        public SubscribeType? Type { get; set; }
         [ForeignKey("UserId")]
         public virtual User User { get; set; }
         public DateTime? CreatedAt { get; set; }

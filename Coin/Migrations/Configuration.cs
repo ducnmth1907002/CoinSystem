@@ -380,6 +380,7 @@
             {
                 Id = 9,
                 UserId = "2",
+                Type = SubscribeType.Gold,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddDays(new Random().Next(30)),
                 CreatedAt = DateTime.Now,

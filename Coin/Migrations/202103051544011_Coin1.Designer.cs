@@ -7,13 +7,13 @@ namespace Coin.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Coin : IMigrationMetadata
+    public sealed partial class Coin1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Coin));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Coin1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202103051325077_Coin"; }
+            get { return "202103051544011_Coin1"; }
         }
         
         string IMigrationMetadata.Source

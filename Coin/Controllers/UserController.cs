@@ -89,22 +89,32 @@ namespace Coin.Controllers
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserInfo")]
         public UserInfo GetUserInfo()
-        {            
+        {
+            SubscribeType? subscribeType = null;
             var userName = User.Identity.GetUserName();
             var user = userManager.FindByName(userName);
-            var subscribe = coinDbContext.Subscribes.FirstOrDefault(s => s.UserId == user.Id).Type;
-
+          
+            var subscribe = coinDbContext.Subscribes.FirstOrDefault(s => s.UserId == user.Id);
+            if (subscribe != null)
+            {
+                if (subscribe.StartDate <= DateTime.Now && subscribe.EndDate >= DateTime.Now)
+                {
+                    subscribeType = subscribe.Type;
+                }
+            }
+           
             return new UserInfo()
             {
                 Email = user.Email,
                 UserName = user.UserName,
                 Phone = user.Phone,
                 Status = user.Status,
-                SubscribeType = subscribe,
+                SubscribeType = subscribeType,
                 CreatedAt = (DateTime)user.CreatedAt,
                 UpdatedAt = (DateTime)user.UpdatedAt
             };
         }
+
     }
 }
 
