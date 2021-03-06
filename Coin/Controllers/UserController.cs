@@ -1,5 +1,6 @@
 ﻿using Coin.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,13 @@ namespace Coin.Controllers
     public class UserController : ApiController
     {
         private AuthRepository _repo = null;
-
+        protected CoinDbContext coinDbContext { get; set; }
+        protected UserManager<User> userManager { get; set; }
         public UserController()
         {
             _repo = new AuthRepository();
+            this.coinDbContext = new CoinDbContext();
+            this.userManager = new UserManager<User>(new UserStore<User>(this.coinDbContext));
         }
 
         // POST api/Account/Register
@@ -80,6 +84,37 @@ namespace Coin.Controllers
 
             return null;
         }
+
+        [Authorize]
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        [Route("UserInfo")]
+        public UserInfo GetUserInfo()
+        {
+            SubscribeType? subscribeType = null;
+            var userName = User.Identity.GetUserName();
+            var user = userManager.FindByName(userName);
+          
+            var subscribe = coinDbContext.Subscribes.FirstOrDefault(s => s.UserId == user.Id);
+            if (subscribe != null)
+            {
+                if (subscribe.StartDate <= DateTime.Now && subscribe.EndDate >= DateTime.Now)
+                {
+                    subscribeType = subscribe.Type;
+                }
+            }
+           
+            return new UserInfo()
+            {
+                Email = user.Email,
+                UserName = user.UserName,
+                Phone = user.Phone,
+                Status = user.Status,
+                SubscribeType = subscribeType,
+                CreatedAt = (DateTime)user.CreatedAt,
+                UpdatedAt = (DateTime)user.UpdatedAt
+            };
+        }
+
     }
 }
 
