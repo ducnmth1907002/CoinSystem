@@ -14,10 +14,9 @@ namespace Coin.Controllers
     {
         private CoinDbContext db = new CoinDbContext();
 
-        public IQueryable<News> GetListNews(int userId)
+        public IQueryable<News> GetListNews()
         {
-            var s = db.Subscribes.Where(g => g.StartDate <= DateTime.Now && g.EndDate >= DateTime.Now).OrderBy(g=>g.Type).First();
-            var type = s.Type;
+            var type = new UserController().GetUserInfo().SubscribeType;
             if (type ==SubscribeType.Silver)
             {
                 return db.News.Where(g => g.Type == NewsType.Bronze || g.Type == NewsType.Silver);
@@ -30,12 +29,10 @@ namespace Coin.Controllers
             {
                 return db.News.Where(g => g.Type == NewsType.Bronze);
             }
-
         }
         // GET: api/News
         public IQueryable<News> GetNews()
         {
-            //return db.News.Where(g => g.Type == NewsType.Gold);
             return db.News;
         }
         // GET: api/News/5
@@ -43,11 +40,31 @@ namespace Coin.Controllers
         public IHttpActionResult GetNews(int id)
         {
             News news = db.News.Find(id);
-            if (news == null)
+            if (news==null)
             {
                 return NotFound();
             }
-
+            var t = news.Type;
+            var u = new UserController().GetUserInfo().SubscribeType;
+            if (t==NewsType.Bronze)
+            {
+                return Ok(news);
+            }
+            else if(t == NewsType.Silver)
+            {
+                if (u==SubscribeType.Silver||u==SubscribeType.Gold)
+                {
+                    return Ok(news);
+                }
+                return NotFound();
+            } else if (t == NewsType.Silver)
+            {
+                if (u == SubscribeType.Gold)
+                {
+                    return Ok(news);
+                }
+                return NotFound();
+            }
             return Ok(news);
         }
 
