@@ -203,9 +203,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103041444380_Coin.cs" />
-    <Compile Include="Migrations\202103041444380_Coin.Designer.cs">
-      <DependentUpon>202103041444380_Coin.cs</DependentUpon>
+    <Compile Include="Migrations\202103051540320_Coin.cs" />
+    <Compile Include="Migrations\202103051540320_Coin.Designer.cs">
+      <DependentUpon>202103051540320_Coin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103051544011_Coin1.cs" />
+    <Compile Include="Migrations\202103051544011_Coin1.Designer.cs">
+      <DependentUpon>202103051544011_Coin1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthRepository.cs" />
@@ -302,8 +306,11 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103041444380_Coin.resx">
-      <DependentUpon>202103041444380_Coin.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103051540320_Coin.resx">
+      <DependentUpon>202103051540320_Coin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103051544011_Coin1.resx">
+      <DependentUpon>202103051544011_Coin1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
