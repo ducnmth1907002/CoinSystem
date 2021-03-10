@@ -100,10 +100,10 @@ namespace Coin.Controllers
             var subscribe = coinDbContext.Subscribes.FirstOrDefault(s => s.UserId == user.Id);
             if (subscribe != null)
             {
-                if (subscribe.StartDate <= DateTime.Now && subscribe.EndDate >= DateTime.Now)
+                if (subscribe.StartDate <= DateTime.Now && subscribe.EndDate >= DateTime.Now && subscribe.Status != SubscribeStatus.Deactive)
                 {
                     subscribeType = subscribe.Type;
-                }
+                }     
             }
            
             return new UserInfo()
@@ -141,8 +141,7 @@ namespace Coin.Controllers
             };
 
             if (userSubscribe == null)
-            {
-                
+            {              
                 coinDbContext.Subscribes.Add(userSub);
                 coinDbContext.SaveChanges();
                 return userSub;
