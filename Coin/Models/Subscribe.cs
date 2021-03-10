@@ -17,11 +17,17 @@ namespace Coin.Models
         public virtual User User { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
-
+        public string Code { get; set; }
+        public SubscribeStatus Status { get; set; }
     }
 
     public enum SubscribeType
     {
         Bronze, Silver, Gold
+    }
+
+    public enum SubscribeStatus
+    {
+        Deactive, Active
     }
 }

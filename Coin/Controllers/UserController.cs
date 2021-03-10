@@ -3,9 +3,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -115,6 +118,41 @@ namespace Coin.Controllers
             };
         }
 
+        [Authorize]
+        [HttpPost]
+        [Route("register-vip")]
+        public Subscribe RegsterVip(int type)
+        {
+            string randomCode = Path.GetRandomFileName();
+            randomCode = randomCode.Replace(".", "");
+            var userName = User.Identity.GetUserName();
+            var user = userManager.FindByName(userName);
+            var userSubscribe = coinDbContext.Subscribes.FirstOrDefault(s => s.UserId == user.Id);
+            var userSub = new Subscribe()
+            {
+                UserId = user.Id,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddDays(30),
+                Code = randomCode,
+                Type = (SubscribeType)type,
+                Status = SubscribeStatus.Deactive,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
+            };
+
+            if (userSubscribe == null)
+            {
+                
+                coinDbContext.Subscribes.Add(userSub);
+                coinDbContext.SaveChanges();
+                return userSub;
+            }
+            
+            userSub.Id = userSubscribe.Id;
+            coinDbContext.Entry(userSubscribe).CurrentValues.SetValues(userSub);
+            coinDbContext.SaveChanges();
+            return userSub;
+        }
     }
 }
 
