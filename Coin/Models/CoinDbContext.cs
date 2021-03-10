@@ -22,11 +22,6 @@ namespace Coin.Models
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<News>()
-                .HasRequired(n => n.User)
-                .WithMany(user => user.News)
-                .HasForeignKey(n => n.UserId);
-
             modelBuilder.Entity<Subscribe>()
                 .HasRequired(s => s.User)
                 .WithMany(user => user.Subscribes)

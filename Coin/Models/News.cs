@@ -15,8 +15,6 @@ namespace Coin.Models
         public string Content { get; set; }
         public NewsStatus Status { get; set; }
         public NewsType Type { get; set; }
-        [ForeignKey("UserId")]
-        public virtual User User { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
 
@@ -31,4 +29,5 @@ namespace Coin.Models
     {
         Bronze, Silver, Gold
     }
+
 }

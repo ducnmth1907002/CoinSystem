@@ -188,26 +188,15 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CurrenciesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103081236238_CoinK.cs" />
-    <Compile Include="Migrations\202103081236238_CoinK.Designer.cs">
-      <DependentUpon>202103081236238_CoinK.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103091449029_coin.cs" />
-    <Compile Include="Migrations\202103091449029_coin.Designer.cs">
-      <DependentUpon>202103091449029_coin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103091526292_coin1.cs" />
-    <Compile Include="Migrations\202103091526292_coin1.Designer.cs">
-      <DependentUpon>202103091526292_coin1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103091537336_coin2.cs" />
-    <Compile Include="Migrations\202103091537336_coin2.Designer.cs">
-      <DependentUpon>202103091537336_coin2.cs</DependentUpon>
+    <Compile Include="Migrations\202103101311577_coin.cs" />
+    <Compile Include="Migrations\202103101311577_coin.Designer.cs">
+      <DependentUpon>202103101311577_coin.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthRepository.cs" />
@@ -288,17 +277,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103081236238_CoinK.resx">
-      <DependentUpon>202103081236238_CoinK.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103091449029_coin.resx">
-      <DependentUpon>202103091449029_coin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103091526292_coin1.resx">
-      <DependentUpon>202103091526292_coin1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103091537336_coin2.resx">
-      <DependentUpon>202103091537336_coin2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103101311577_coin.resx">
+      <DependentUpon>202103101311577_coin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
