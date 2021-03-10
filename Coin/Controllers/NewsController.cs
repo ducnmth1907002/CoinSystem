@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Coin.Models;
@@ -14,63 +17,28 @@ namespace Coin.Controllers
     {
         private CoinDbContext db = new CoinDbContext();
 
-        public IQueryable<News> GetListNews()
-        {
-            var type = new UserController().GetUserInfo().SubscribeType;
-            if (type ==SubscribeType.Silver)
-            {
-                return db.News.Where(g => g.Type == NewsType.Bronze || g.Type == NewsType.Silver);
-            }
-            else if (type == SubscribeType.Gold)
-            {
-                return db.News;
-            }
-            else
-            {
-                return db.News.Where(g => g.Type == NewsType.Bronze);
-            }
-        }
         // GET: api/News
         public IQueryable<News> GetNews()
         {
             return db.News;
         }
+
         // GET: api/News/5
         [ResponseType(typeof(News))]
-        public IHttpActionResult GetNews(int id)
+        public async Task<IHttpActionResult> GetNews(int id)
         {
-            News news = db.News.Find(id);
-            if (news==null)
+            News news = await db.News.FindAsync(id);
+            if (news == null)
             {
                 return NotFound();
             }
-            var t = news.Type;
-            var u = new UserController().GetUserInfo().SubscribeType;
-            if (t==NewsType.Bronze)
-            {
-                return Ok(news);
-            }
-            else if(t == NewsType.Silver)
-            {
-                if (u==SubscribeType.Silver||u==SubscribeType.Gold)
-                {
-                    return Ok(news);
-                }
-                return NotFound();
-            } else if (t == NewsType.Silver)
-            {
-                if (u == SubscribeType.Gold)
-                {
-                    return Ok(news);
-                }
-                return NotFound();
-            }
+
             return Ok(news);
         }
 
         // PUT: api/News/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutNews(int id, News news)
+        public async Task<IHttpActionResult> PutNews(int id, News news)
         {
             if (!ModelState.IsValid)
             {
@@ -86,7 +54,7 @@ namespace Coin.Controllers
 
             try
             {
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -105,7 +73,7 @@ namespace Coin.Controllers
 
         // POST: api/News
         [ResponseType(typeof(News))]
-        public IHttpActionResult PostNews(News news)
+        public async Task<IHttpActionResult> PostNews(News news)
         {
             if (!ModelState.IsValid)
             {
@@ -113,23 +81,23 @@ namespace Coin.Controllers
             }
 
             db.News.Add(news);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = news.Id }, news);
         }
 
         // DELETE: api/News/5
         [ResponseType(typeof(News))]
-        public IHttpActionResult DeleteNews(int id)
+        public async Task<IHttpActionResult> DeleteNews(int id)
         {
-            News news = db.News.Find(id);
+            News news = await db.News.FindAsync(id);
             if (news == null)
             {
                 return NotFound();
             }
 
             db.News.Remove(news);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return Ok(news);
         }
