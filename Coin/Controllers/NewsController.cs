@@ -16,7 +16,7 @@ namespace Coin.Controllers
     public class NewsController : ApiController
     {
         private CoinDbContext db = new CoinDbContext();
-
+        [Authorize]
         // GET: api/News
         public IQueryable<News> GetNews()
         {
