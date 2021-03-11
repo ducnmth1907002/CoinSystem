@@ -1,0 +1,183 @@
+﻿@model PagedList.IPagedList<Coin.Models.User>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List User</h2>
+<div class="card-body" style="width: 100%">
+    <div class="row">
+        <div class="col-8" style="margin-bottom: 30px">
+
+        </div>
+        <div class="col-4">
+            @using (Html.BeginForm("Index", "User", FormMethod.Get))
+            {
+                <p>
+                    Find by title: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                    <input type="submit" value="Search" />
+                </p>
+            }
+        </div>
+    </div>
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>
+                    Email
+                </th>
+                <th>
+                    EmailConfirmed
+                </th>
+
+                <th>
+                    PhoneNumberConfirmed
+                </th>
+                <th>
+                    TwoFactorEnabled
+                </th>
+
+                <th>
+                    LockoutEnabled
+                </th>
+                <th>
+                    AccessFailedCount
+                </th>
+                <th>
+                    UserName
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Phone
+                </th>
+                <th>
+                    Role
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    CreatedAt
+                </th>
+                <th>
+                    UpdatedAt
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>
+                    Email
+                </th>
+                <th>
+                    EmailConfirmed
+                </th>
+
+                <th>
+                    PhoneNumberConfirmed
+                </th>
+                <th>
+                    TwoFactorEnabled
+                </th>
+
+                <th>
+                    LockoutEnabled
+                </th>
+                <th>
+                    AccessFailedCount
+                </th>
+                <th>
+                    UserName
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Phone
+                </th>
+                <th>
+                    Role
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    CreatedAt
+                </th>
+                <th>
+                    UpdatedAt
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </tfoot>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailConfirmed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TwoFactorEnabled)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LockoutEnabled)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AccessFailedCount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Role)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedAt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UpdatedAt)
+                    </td>
+                    <td>
+                        <button class="btn btn-primary text-uppercase" style="margin-bottom: 30px">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                        </button>
+                        <button class="btn btn-info text-uppercase" style="margin-bottom: 30px">
+                            @Html.ActionLink("Details", "Details", new { id = item.Id })
+                        </button>
+                        <button class="btn btn-danger text-uppercase" style="margin-bottom: 30px">
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @**@Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>

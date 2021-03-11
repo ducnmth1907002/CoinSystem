@@ -1,0 +1,113 @@
+﻿
+@model PagedList.IPagedList<Coin.Models.Currency>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Currency";
+}
+
+<h2>List Currency</h2>
+
+<div class="card-body">
+    <div class="row">
+        <div class="col-8" style="margin-bottom: 30px">
+            <a href="/Currencies/Create">
+                <button class="btn btn-success text-uppercase">
+                    ADD
+                </button>
+            </a>
+        </div>
+        <div class="col-4">
+            @using (Html.BeginForm("Index", "Currencies", FormMethod.Get))
+            {
+                <p>
+                    Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                    <input type="submit" value="Search" />
+                </p>
+            }
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>@Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })</th>
+                    <th>Symbol</th>
+                    <th> @Html.ActionLink("ReleaseDate", "Index", new { sortOrder = ViewBag.DateSortParm })</th>
+                    <th>Website</th>
+                    <th>Status</th>
+                    <th>CreatedAt</th>
+                    <th>UpdatedAt</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Symbol</th>
+                    <th>ReleaseDate</th>
+                    <th>Website</th>
+                    <th>Status</th>
+                    <th>CreatedAt</th>
+                    <th>UpdatedAt</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Symbol)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReleaseDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Website)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedAt)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpdatedAt)
+                        </td>
+                        <td>
+                            <button class="btn btn-primary text-uppercase" style="margin-bottom: 30px">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                            </button>
+                            <button class="btn btn-info text-uppercase" style="margin-bottom: 30px">
+                                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                            </button>
+                            <button class="btn btn-danger text-uppercase" style="margin-bottom: 30px">
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".des").each(function () {
+                $(this).html($(this).text())
+            })
+        });
+    </script>
+    @Styles.Render("~/bundles/js")
+}

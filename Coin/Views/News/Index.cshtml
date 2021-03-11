@@ -1,0 +1,146 @@
+﻿@model PagedList.IPagedList<Coin.Models.News>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "News";
+}
+
+<h2>List news</h2>
+<div class="row">
+
+
+    <div class="card-body" style="width: 100%">
+        <div class="row">
+            <div class="col-8" style="margin-bottom: 30px">
+                <a href="/News/Create">
+                    <button class="btn btn-success text-uppercase">
+                        ADD
+                    </button>
+                </a>
+            </div>
+            <div class="col-4">
+                @using (Html.BeginForm("Index", "News", FormMethod.Get))
+                {
+                    <p>
+                        Find by title: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                        <input type="submit" value="Search" />
+                    </p>
+                }
+            </div>
+        </div>
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Description
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        Thumbnail
+                    </th>
+                    <th>
+                        CreatedAt
+                    </th>
+                    <th>
+                        UpdatedAt
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Description
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        Thumbnail
+                    </th>
+                    <th>
+                        CreatedAt
+                    </th>
+                    <th>
+                        UpdatedAt
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td class="des">
+                            @Html.DisplayFor(modelItem => item.Thumbnail)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedAt)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpdatedAt)
+                        </td>
+                        <td>
+                            <button class="btn btn-primary text-uppercase" style="margin-bottom: 10px">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                            </button>
+                            <button class="btn btn-info text-uppercase" style="margin-bottom: 10px">
+                                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                            </button>
+                            <button class="btn btn-danger text-uppercase" style="margin-bottom: 10px">
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        @**@Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(".des").each(function () {
+            var t = $(this);
+            if (t.text()) {
+                t.html(t.text());
+            }
+        });
+    </script>
+    @Styles.Render("~/bundles/js")
+}
