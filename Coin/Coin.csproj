@@ -198,6 +198,10 @@
     <Compile Include="Migrations\202103101311577_coin.Designer.cs">
       <DependentUpon>202103101311577_coin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103111249376_abcd.cs" />
+    <Compile Include="Migrations\202103111249376_abcd.Designer.cs">
+      <DependentUpon>202103111249376_abcd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthRepository.cs" />
     <Compile Include="Models\CoinDbContext.cs" />
@@ -281,6 +285,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202103101311577_coin.resx">
       <DependentUpon>202103101311577_coin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103111249376_abcd.resx">
+      <DependentUpon>202103111249376_abcd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
