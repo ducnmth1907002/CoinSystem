@@ -1,0 +1,62 @@
+﻿@model Coin.Models.Subscribe
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+
+<div class="card-body">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedAt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UpdatedAt)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.CreatedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.UpdatedAt)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
