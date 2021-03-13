@@ -23,7 +23,7 @@ namespace Coin.Models
 
     public enum SubscribeType
     {
-        Bronze, Silver, Gold
+        None, Bronze, Silver, Gold
     }
 
     public enum SubscribeStatus

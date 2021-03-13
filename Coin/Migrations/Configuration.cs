@@ -383,8 +383,56 @@
                 CreatedAt = DateTime.Now.AddDays(new Random().Next(-5, -1)),
                 UpdatedAt = DateTime.Now.AddDays(new Random().Next(-5, -1)),
             });
+            context.Currencies.AddOrUpdate(new Currency()
+            {
+                Id = 10,
+                Name = "Bitcoin Cash",
+                Symbol = "BCH",
+                ReleaseDate = "tháng 12 năm 2017",
+                Description = "<p>Bitcoin Cash là một loại tiền điện tử là một nhánh của Bitcoin. Bitcoin Cash là một spin-off hoặc altcoin được tạo ra vào năm 2017. Vào tháng 11 năm 2018, Bitcoin Cash chia thành hai loại tiền điện tử: Bitcoin Cash và Bitcoin SV. Bitcoin Cash đôi khi còn được gọi là Bcash.</ p>",
+                Website = "",
+                Status = CurrencyStatus.Active,
+                CreatedAt = DateTime.Now.AddDays(new Random().Next(-5, -1)),
+                UpdatedAt = DateTime.Now.AddDays(new Random().Next(-5, -1)),
+            });
+            context.Currencies.AddOrUpdate(new Currency()
+            {
+                Id = 11,
+                Name = "Dash",
+                Symbol = "DASH",
+                ReleaseDate = "",
+                Description = "<p>Dash là một loại tiền điện tử mã nguồn mở. Nó là một altcoin được phân tách từ giao thức Bitcoin. Nó cũng là một tổ chức tự trị phi tập trung được điều hành bởi một tập hợp con những người dùng của nó, được gọi là masternode.</ p>",
+                Website = "",
+                Status = CurrencyStatus.Active,
+                CreatedAt = DateTime.Now.AddDays(new Random().Next(-5, -1)),
+                UpdatedAt = DateTime.Now.AddDays(new Random().Next(-5, -1)),
+            });
             context.SaveChanges();
-
+            context.Currencies.AddOrUpdate(new Currency()
+            {
+                Id = 12,
+                Name = "TRON",
+                Symbol = "TRX",
+                ReleaseDate = "",
+                Description = "<p>TRON là một hệ điều hành phi tập trung dựa trên Blockchain dựa trên một loại tiền điện tử có nguồn gốc từ hệ thống, được gọi là TRX.</ p>",
+                Website = "",
+                Status = CurrencyStatus.Active,
+                CreatedAt = DateTime.Now.AddDays(new Random().Next(-5, -1)),
+                UpdatedAt = DateTime.Now.AddDays(new Random().Next(-5, -1)),
+            });
+            context.Currencies.AddOrUpdate(new Currency()
+            {
+                Id = 13,
+                Name = "Chiliz",
+                Symbol = "CHZ",
+                ReleaseDate = "",
+                Description = "",
+                Website = "",
+                Status = CurrencyStatus.Active,
+                CreatedAt = DateTime.Now.AddDays(new Random().Next(-5, -1)),
+                UpdatedAt = DateTime.Now.AddDays(new Random().Next(-5, -1)),
+            });
+            context.SaveChanges();
             context.Subscribes.AddOrUpdate(new Subscribe()
             {
                 Id = 9,
